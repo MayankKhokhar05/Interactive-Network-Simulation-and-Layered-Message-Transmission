@@ -1,0 +1,74 @@
+<html>
+<head>
+  <title>Network Simulation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+  <h1>Interactive Network Simulation</h1>
+
+  <div id="controls">
+    <input id="routerName" placeholder="Router name">
+    <button onclick="addRouter()">Add Router</button>
+    
+    <hr>
+    <input id="startNode" placeholder="Start">
+    <input id="endNode" placeholder="End">
+    <button onclick="findShortestPath()">Find Shortest Path</button>
+
+    <hr>
+    <input id="msgSrc" placeholder="Source Node">
+    <input id="msgDest" placeholder="Destination Node">
+    <input id="msgText" placeholder="Message">
+    <button onclick="sendMessage()">Send Message</button>
+
+    
+    <button id="resetSelection" onclick="resetSelection()">Reset Selection</button>
+  </div>
+
+  <div id="layer-modal" class="modal">
+    <div class="modal-content">
+      <h4>Message Sent!</h4>
+      <div id="layer-log" style="font-size: 14px;"></div>
+      <button id="close-modal" class="btn">Close</button>
+    </div>
+  </div>
+
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+  <div id="network"></div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
